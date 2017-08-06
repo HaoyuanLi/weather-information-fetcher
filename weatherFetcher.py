@@ -1,11 +1,15 @@
 import BeautifulSoup
 import requests
 import re
+import time
 
 session = requests.session()
 
+currentTime = time.strftime("%Y%m%d")
+currentTime = currentTime[2:]
+
 record = open('weatherinfo.txt','a')
-req = session.get('http://weather.eos.ubc.ca/wxfcst/users/Guest/ubcrs_withicons/index.php?location=3510')
+req = session.get('http://weather.eos.ubc.ca/wxfcst/users/Guest/ubcrs_withicons/index.php?location=3510' + '&date=' + currentTime)
 
 doc = BeautifulSoup.BeautifulSoup(req.content)
 
